@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styleAdicionar.css}">
+    <title>Excluir Produto</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Excluir Produto</h1>
+
+        <p>Tem certeza que deseja excluir o produto <strong th:text="${produto.nome}">Produto</strong>?</p>
+
+        <form th:action="@{/ProdutoExcluido}" method="post">
+            <input type="hidden" th:field="*{id}" th:value="${produto.id}"/>
+            <button type="submit" style="background-color:#dc3545;">Excluir Produto</button>
+            <a th:href="@{/}" style="margin-left:10px;">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

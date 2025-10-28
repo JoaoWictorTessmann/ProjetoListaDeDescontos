@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styleIndex.css}">
+    <title>Lista de Produtos</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Lista de Produtos</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço (R$)</th>
+                    <th>Desconto (%)</th>
+                    <th>Estoque</th>
+                    <th>Garantia</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="produto : ${paginaProdutos.content}">
+                    <td th:text="${produto.id}">1</td>
+                    <td th:text="${produto.nome}">Produto</td>
+                    <td th:text="${#numbers.formatDecimal(produto.preco, 1, 2)}">0.00</td>
+                    <td th:text="${produto.desconto}">0</td>
+                    <td th:text="${produto.estoque}">0</td>
+                    <td th:text="${produto.garantia}">Garantia</td>
+                    <td th:text="${produto.descricao}">Descrição</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="actions">
+            <button class="btn-add" onclick="window.location.href='/PaginaAdicionarProduto'">Adicionar Produto</button>
+            <button class="btn-edit" onclick="editarProduto()">Editar Valor</button>
+            <button class="btn-remove" onclick="excluirProduto()">Remover Produto</button>
+            <button class="btn-details" onclick="verDetalhes()">Ver Detalhes</button>
+        </div>
+        <div class="pagination-buttons">
+            <a th:if="${!paginaProdutos.first}" th:href="@{/?page={p}(p=${paginaProdutos.number - 1})}"
+                class="arrow">&lt;
+            </a>
+            
+            <span class="pagination-info">
+                Página <span th:text="${paginaProdutos.number + 1}">1</span> de
+                <span th:text="${paginaProdutos.totalPages}">1</span>
+            </span>
+
+            <a th:if="${!paginaProdutos.last}" th:href="@{/?page={p}(p=${paginaProdutos.number + 1})}"
+                class="arrow">&gt;
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

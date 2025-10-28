@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styleAdicionar.css}">
+    <title>Editar Produto</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Produto</h1>
+
+        <form th:action="@{/ProdutoAtualizado}" th:object="${produto}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+
+            <label>Nome</label>
+            <input type="text" th:field="*{nome}" required/>
+
+            <label>Preço (R$)</label>
+            <input type="number" th:field="*{preco}" step="0.01" required/>
+
+            <label>Desconto (%)</label>
+            <input type="number" th:field="*{desconto}" step="0.01"/>
+
+            <label>Descrição</label>
+            <textarea th:field="*{descricao}"></textarea>
+
+            <label>Estoque</label>
+            <input type="number" th:field="*{estoque}" required/>
+
+            <label>Garantia</label>
+            <input type="text" th:field="*{garantia}"/>
+
+            <button type="submit">Atualizar Produto</button>
+        </form>
+
+        <div class="containervoltar">
+            <a th:href="@{/}">← Voltar à Lista de Produtos</a>
+        </div>
+    </div>
+</body>
+</html>
