@@ -6,7 +6,7 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-/* === Layout principal === */
+/* === Fundo e Container === */
 body {
   background-color: #f4f6fb;
   display: flex;
@@ -17,27 +17,20 @@ body {
 }
 
 .container {
+  background: #fff;
   width: 100%;
   max-width: 600px;
-  background: #fff;
-  padding: 35px 40px;
   border-radius: 12px;
+  padding: 35px 40px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  animation: fadeIn 0.4s ease-in-out;
 }
 
-/* === Animação suave === */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* === Cabeçalho === */
+/* === Título === */
 h1 {
   text-align: center;
   color: #6a1b9a;
-  font-size: 2rem;
   margin-bottom: 25px;
+  font-size: 2rem;
   letter-spacing: 0.5px;
 }
 
@@ -48,15 +41,21 @@ form {
   gap: 15px;
 }
 
+label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
 input[type="text"],
 input[type="number"],
 textarea {
   width: 100%;
-  padding: 12px 14px;
+  padding: 10px 12px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus,
@@ -66,6 +65,7 @@ textarea:focus {
   outline: none;
 }
 
+/* === Textarea === */
 textarea {
   resize: vertical;
   min-height: 80px;

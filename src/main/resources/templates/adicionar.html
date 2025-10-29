@@ -13,10 +13,8 @@
         <form th:action="@{/adicionar}" th:object="${novoProduto}" method="post">
             <input type="text" th:field="*{nome}" placeholder="Nome do Produto" required/>
             <input type="number" th:field="*{preco}" placeholder="Preço (R$)" step="0.01" required/>
-            <input type="number" th:field="*{desconto}" placeholder="Desconto (%)" step="0.01"/>
             <textarea th:field="*{descricao}" placeholder="Descrição do Produto"></textarea>
             <input type="number" th:field="*{estoque}" placeholder="Estoque" required/>
-            <input type="text" th:field="*{garantia}" placeholder="Garantia (Ex: 12 meses)"/>
             
             <button type="submit">Salvar Produto</button>
         </form>

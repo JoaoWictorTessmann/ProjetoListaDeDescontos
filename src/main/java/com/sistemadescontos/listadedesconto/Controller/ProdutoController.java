@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.sistemadescontos.listadedesconto.Model.Produto;
 import com.sistemadescontos.listadedesconto.Repository.ProdutoRepository;
-
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 @Controller
 public class ProdutoController {
@@ -24,7 +21,7 @@ public class ProdutoController {
 
     @GetMapping("/")
     public String listarProdutos(Model model, @RequestParam(defaultValue = "0") int page) {
-        int tamanhoPagina = 5;
+        int tamanhoPagina = 10;
         Pageable configuracaoPagina = PageRequest.of(page, tamanhoPagina);
         Page<Produto> paginaProdutos = produtoRepository.findAll(configuracaoPagina);
 
@@ -62,6 +59,25 @@ public class ProdutoController {
     @GetMapping("/excluir")
     public String excluirProduto(@RequestParam Long id) {
         produtoRepository.deleteById(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/desconto")
+    public String mostrarPaginaDesconto(@RequestParam Long id, Model model) {
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + id));
+        model.addAttribute("produto", produto);
+        return "desconto";
+    }
+
+    @PostMapping("/desconto")
+    public String salvarDesconto(@RequestParam Long id, @RequestParam Double desconto) {
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + id));
+
+        produto.setDesconto(desconto);
+        produtoRepository.save(produto);
+
         return "redirect:/";
     }
 }

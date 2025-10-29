@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplicar Desconto</title>
+    <link rel="stylesheet" th:href="@{/css/styleDesconto.css}">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="'Aplicar Desconto - ' + ${produto.nome}">Produto</h1>
+
+    <div class="produto-info">
+        <p><strong>Preço Atual:</strong> R$ <span th:text="${#numbers.formatDecimal(produto.preco, 1, 2)}"></span></p>
+        <p><strong>Desconto Atual:</strong> <span th:text="${produto.desconto}"></span>%</p>
+    </div>
+
+    <form th:action="@{/desconto}" method="post" class="form-desconto">
+        <input type="hidden" name="id" th:value="${produto.id}">
+
+        <label for="desconto">Novo Desconto (%):</label>
+        <input type="number" name="desconto" id="desconto" min="0" max="100" step="0.1" required>
+
+        <button type="submit" class="btn-save">Salvar Desconto</button>
+        <a th:href="@{/}" class="btn-cancel">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

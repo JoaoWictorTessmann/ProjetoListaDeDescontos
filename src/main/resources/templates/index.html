@@ -19,6 +19,7 @@
                     <th>Nome</th>
                     <th>Preço (R$)</th>
                     <th>Desconto (%)</th>
+                    <th>Preço com Desconto (R$)</span></th>
                     <th>Estoque</th>
                     <th>Garantia</th>
                     <th>Descrição</th>
@@ -31,33 +32,32 @@
                     <td th:text="${produto.nome}">Produto</td>
                     <td th:text="${#numbers.formatDecimal(produto.preco, 1, 2)}">0.00</td>
                     <td th:text="${produto.desconto}">0</td>
+                    <td th:text="${#numbers.formatDecimal(produto.preco - (produto.preco * ((produto.desconto ?: 0) / 100)), 1, 2)}">0.00</td>
                     <td th:text="${produto.estoque}">0</td>
-                    <td th:text="${produto.garantia}">Garantia</td>
+                    <td th:text="${produto.garantia ?: '3 meses'}">Garantia</td>
                     <td th:text="${produto.descricao}">Descrição</td>
-                    <td>
+                    <td class="actions-col">
                         <a class="btn-edit" th:href="@{/editar(id=${produto.id})}">Editar</a>
                         <a class="btn-remove" th:href="@{/excluir(id=${produto.id})}">Remover</a>
-                        <a class="btn-details" th:href="@{/detalhes(id=${produto.id})}">Ver Detalhes</a>
+                        <a class="btn-discount" th:href="@{/desconto(id=${produto.id})}">Desconto</a>
                     </td>
                 </tr>
             </tbody>
         </table>
+
         <div class="actions">
-            <a class="btn-add" th:href="@{/adicionar}">Adicionar Produto</a>
+            <a class="btn-add" th:href="@{/adicionar}">+ Adicionar Produto</a>
         </div>
+
         <div class="pagination-buttons">
-            <a th:if="${!paginaProdutos.first}" th:href="@{/?page={p}(p=${paginaProdutos.number - 1})}"
-                class="arrow">&lt;
-            </a>
+            <a th:if="${!paginaProdutos.first}" th:href="@{/?page={p}(p=${paginaProdutos.number - 1})}" class="arrow">&lt;</a>
 
             <span class="pagination-info">
                 Página <span th:text="${paginaProdutos.number + 1}">1</span> de
                 <span th:text="${paginaProdutos.totalPages}">1</span>
             </span>
 
-            <a th:if="${!paginaProdutos.last}" th:href="@{/?page={p}(p=${paginaProdutos.number + 1})}"
-                class="arrow">&gt;
-            </a>
+            <a th:if="${!paginaProdutos.last}" th:href="@{/?page={p}(p=${paginaProdutos.number + 1})}" class="arrow">&gt;</a>
         </div>
     </div>
 </body>

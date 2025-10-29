@@ -13,7 +13,7 @@ public class Produto {
     private Long id;
     private String nome;
     private Double preco;
-    private Double desconto;
+    private Double desconto = 0.0;
     private String descricao;
     private Integer estoque;
     private String garantia;

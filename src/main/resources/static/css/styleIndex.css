@@ -1,152 +1,163 @@
-/* Container */
-.container {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 20px 15px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-  color: #222;
+/* === Reset básico === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
-/* Título */
+/* === Layout === */
+body {
+  background-color: #f4f6fb;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 10px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* === Título === */
 h1 {
   text-align: center;
-  margin-bottom: 30px;
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: #0a3d62;
+  color: #6a1b9a;
+  margin-bottom: 25px;
+  font-size: 2rem;
 }
 
-/* Tabela desktop */
+/* === Tabela === */
 table {
   width: 100%;
   border-collapse: collapse;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-  border-radius: 8px;
-  overflow: hidden;
+  margin-bottom: 25px;
 }
 
-thead {
-  background: #0a3d62;
-  color: #fff;
+th, td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-thead th {
-  padding: 14px 18px;
+th {
+  background-color: #ede7f6;
+  color: #6a1b9a;
   font-weight: 600;
-  text-align: left;
-  font-size: 1rem;
 }
 
-tbody tr {
-  background: #f8f9fa;
-  transition: background 0.3s ease;
+tr:nth-child(even) {
+  background-color: #fafafa;
 }
 
-tbody tr:hover {
-  background: #d6e4ff;
+tr:hover {
+  background-color: #f3e5f5;
 }
 
-tbody td {
-  padding: 14px 18px;
-  font-size: 0.95rem;
-  border-bottom: 1px solid #e2e8f0;
+/* Destaque de coluna */
+.highlight {
+  color: #8e24aa;
 }
 
-/* Última linha sem border */
-tbody tr:last-child td {
-  border-bottom: none;
-}
-
-/* Botões na tabela */
-tbody td.actions {
-  white-space: nowrap;
-}
-
-a.btn-edit, a.btn-remove, a.btn-details {
-  padding: 6px 14px;
+/* === Botões === */
+a[class^="btn-"] {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 3px;
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
+  color: #fff;
+  transition: all 0.25s ease;
   font-size: 0.9rem;
-  margin-left: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: background-color 0.25s ease;
-  color: #fff;
-  display: inline-block;
 }
 
-a.btn-edit {
-  background: #f0ad4e;
-  color: #212529;
-}
-a.btn-edit:hover {
-  background: #ec971f;
+.btn-add {
+  background-color: #6a1b9a;
 }
 
-a.btn-remove {
-  background: #d9534f;
-}
-a.btn-remove:hover {
-  background: #c9302c;
+.btn-add:hover {
+  background-color: #4a148c;
 }
 
-a.btn-details {
-  background: #5bc0de;
+.btn-edit {
+  background-color: #2196f3;
 }
-a.btn-details:hover {
-  background: #31b0d5;
+.btn-edit:hover {
+  background-color: #1976d2;
 }
 
-/* Botão adicionar */
+.btn-remove {
+  background-color: #e53935;
+}
+.btn-remove:hover {
+  background-color: #c62828;
+}
+
+.btn-discount {
+  background-color: #8e24aa;
+}
+.btn-discount:hover {
+  background-color: #6a1b9a;
+}
+
+/* === Ações === */
 .actions {
-  margin: 25px 0;
-  text-align: right;
+  text-align: center;
+  margin-top: 20px;
 }
 
-a.btn-add {
-  background: #28a745;
-  color: #fff;
-  padding: 10px 22px;
+/* === Paginação === */
+.pagination-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.arrow {
+  background-color: #6a1b9a;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
   font-weight: 700;
   font-size: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-}
-a.btn-add:hover {
-  background: #218838;
 }
 
-/* Paginação */
-.pagination-buttons {
-  margin-top: 30px;
-  text-align: center;
+.arrow:hover {
+  background-color: #4a148c;
+}
+
+.pagination-info {
   font-weight: 600;
   color: #555;
 }
 
-.pagination-buttons a.arrow {
-  background: #0a3d62;
-  color: #fff;
-  padding: 8px 16px;
-  margin: 0 6px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 700;
-  transition: background-color 0.3s ease;
-  display: inline-block;
-}
-.pagination-buttons a.arrow:hover {
-  background: #07407a;
+/* === Responsividade === */
+@media (max-width: 900px) {
+  table {
+    font-size: 0.85rem;
+  }
+
+  th, td {
+    padding: 10px;
+  }
 }
 
-/* Responsividade: cards para mobile */
-@media (max-width: 720px) {
+@media (max-width: 650px) {
+  .container {
+    padding: 20px;
+  }
+
   table, thead, tbody, th, td, tr {
     display: block;
   }
@@ -155,48 +166,30 @@ a.btn-add:hover {
     display: none;
   }
 
-  tbody tr {
-    background: #f8f9fa;
-    margin-bottom: 18px;
-    padding: 15px 20px;
-    border-radius: 12px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+  tr {
+    margin-bottom: 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
   }
 
-  tbody td {
-    padding: 8px 0;
-    border: none;
-    position: relative;
-    padding-left: 45%;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #333;
-  }
-
-  tbody td.actions {
-    padding-left: 0;
+  td {
     text-align: right;
+    padding: 10px;
+    position: relative;
   }
 
-  tbody td::before {
+  td::before {
     content: attr(data-label);
     position: absolute;
-    left: 20px;
-    top: 8px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: #555;
+    left: 10px;
+    font-weight: bold;
+    color: #6a1b9a;
   }
 
-  a.btn-edit, a.btn-remove, a.btn-details {
-    margin-left: 0;
-    margin-right: 10px;
-    padding: 8px 12px;
-    font-size: 0.9rem;
-  }
-  
   .actions {
-    text-align: center;
-    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
   }
 }
