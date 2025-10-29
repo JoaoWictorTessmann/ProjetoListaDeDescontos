@@ -10,7 +10,7 @@
     <div class="container">
         <h1>Adicionar Novo Produto</h1>
 
-        <form th:action="@{/ProdutoSalvo}" th:object="${novoProduto}" method="post">
+        <form th:action="@{/adicionar}" th:object="${novoProduto}" method="post">
             <input type="text" th:field="*{nome}" placeholder="Nome do Produto" required/>
             <input type="number" th:field="*{preco}" placeholder="Preço (R$)" step="0.01" required/>
             <input type="number" th:field="*{desconto}" placeholder="Desconto (%)" step="0.01"/>

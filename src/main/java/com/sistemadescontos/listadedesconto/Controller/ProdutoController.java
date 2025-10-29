@@ -12,7 +12,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sistemadescontos.listadedesconto.Model.Produto;
 import com.sistemadescontos.listadedesconto.Repository.ProdutoRepository;
+
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 @Controller
 public class ProdutoController {
@@ -31,15 +33,35 @@ public class ProdutoController {
         return "index";
     }
 
-    @GetMapping("/PaginaAdicionarProduto")
+    @GetMapping("/adicionar")
     public String exibirPaginaAdicionarProduto(Model model) {
         model.addAttribute("novoProduto", new Produto());
         return "adicionar";
     }
 
-    @PostMapping("/ProdutoSalvo")
+    @PostMapping("/adicionar")
     public String adicionarProduto(Produto produto, RedirectAttributes redirectAttributes) {
         produtoRepository.save(produto);
+        return "redirect:/";
+    }
+
+    @GetMapping("/editar")
+    public String editarProduto(@RequestParam Long id, Model model) {
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + id));
+        model.addAttribute("produto", produto);
+        return "editar";
+    }
+
+    @PostMapping("/editar")
+    public String atualizarProduto(Produto produto) {
+        produtoRepository.save(produto);
+        return "redirect:/";
+    }
+
+    @GetMapping("/excluir")
+    public String excluirProduto(@RequestParam Long id) {
+        produtoRepository.deleteById(id);
         return "redirect:/";
     }
 }
